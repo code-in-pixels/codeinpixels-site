@@ -42,8 +42,8 @@ const Header = () => {
   }
 
   return (
-    <header className='max-w-[594px] w-[inherit] mx-auto mt-12 block fixed inset-0 z-20'>
-      <nav className='rounded-[2px] border py-3 px-6 bg-sand/5 backdrop-blur-[30px] border-sand/15 font-sato'>
+    <header className='max-w-[594px] w-[inherit] mx-auto mt-12 block fixed inset-0 z-50 pointer-events-none'>
+      <nav className='rounded-[2px] border py-3 px-6 bg-sand/5 backdrop-blur-[30px] border-sand/15 font-sato h-[65px] pointer-events-auto'>
         <ul className={`md:flex hidden items-center justify-around`}>
           {navLinks.map((links) => (
             <li key={links?.id} className=''>
@@ -52,7 +52,7 @@ const Header = () => {
           ))}
           <li>
             <button className='uppercase px-4 py-2.5 bg-[#a2d2ff] text-black rounded-[2px] tracking-[1.5px] text-[13px] font-normal cursor-pointer font-satoshi' onClick={messageBtn}>
-              Let's Talk
+              Book a session
             </button>
           </li>
         </ul>

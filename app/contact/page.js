@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from 'react';
-//import emailjs from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 
 const contact = () => {
   const [userDetails, setUserDetails] = useState({
@@ -28,30 +28,31 @@ const contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
     setLoading(true);
-    // const { name, email, message } = userDetails;
+    const { name, email, message } = userDetails;
 
-    // const templateParams = {
-    //   from_email: email,
-    //   from_name: name,
-    //   to_name: 'CodeInPixels',
-    //   message: message,
-    // };
+    const templateParams = {
+      email: email,
+      name: name,
+      message: message,
+    };
 
-    // emailjs.send(
-    //   process.env.NEXT_PUBLIC_SERVICE_ID,
-    //   process.env.NEXT_PUBLIC_TEMPLATE_ID,
-    //   templateParams,
-    //   process.env.NEXT_PUBLIC_PUBLIC_KEY,
-    // ).then((response) => {
-    //   console.log('Email sent successfully!', response);
-    //   setUserDetails({ name: "", email: "", message: "" })
-    // }).catch((error) => {
-    //   console.log('Something went wrong...', error);
-    // }).finally(() => {
-    //   setLoading(false)
-    //   // Show the waitlist modal
-    //   setWaitlistModal(true);
-    // });
+    emailjs.send(
+      process.env.NEXT_PUBLIC_SERVICE_ID,
+      process.env.NEXT_PUBLIC_TEMPLATE_ID,
+      templateParams,
+      process.env.NEXT_PUBLIC_PUBLIC_KEY,
+      console.log("sent", userDetails)
+    ).then((response) => {
+      console.log('Email sent successfully!', response);
+      console.log(userDetails)
+      setUserDetails({ name: "", email: "", message: "" })
+    }).catch((error) => {
+      console.log('Something went wrong...', error);
+    }).finally(() => {
+      setLoading(false)
+      // Show the waitlist modal
+      setWaitlistModal(true);
+    });
   }
 
   const handleSubmit = (e) => {
@@ -116,6 +117,7 @@ const contact = () => {
               placeholder="Message"
               name="message"
               value={userDetails.message}
+              required
               onChange={handleChange}
             />
           </div>
@@ -154,7 +156,7 @@ const contact = () => {
             <div className="gap-4 group-hover:translate-x-10 transition-all duration-[750ms] ease-in-out">
               <h3 className="font-bold text-[26px] leading-[32px] tracking-[0.5px] font-satoshi">
                 <a
-                  href="mailto:info@atmgc.xyz"
+                  href="mailto:contact@codeinpixels.com"
                   target="_blank"
                   rel="noreferrer"
                   className="text-sand/60"
@@ -164,7 +166,7 @@ const contact = () => {
               </h3>
               <p className="text-base text-white font-Chillax">
                 <a
-                  href="mailto:info@atmgc.xyz"
+                  href="mailto:contact@codeinpixels.com"
                   target="_blank"
                   rel="noreferrer"
                   className=""
