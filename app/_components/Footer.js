@@ -7,14 +7,14 @@ const navigation = {
       name: 'Home',
       link: '/',
     },
-    {
-      name: 'Services',
-      link: '/services',
-    },
-    {
-      name: 'Work',
-      link: '/work',
-    },
+    // {
+    //   name: 'Services',
+    //   link: '/services',
+    // },
+    // {
+    //   name: 'Work',
+    //   link: '/work',
+    // },
     {
       name: 'Contact',
       link: '/contact',
@@ -90,14 +90,14 @@ const Footer = () => {
     <footer className='my-4'>
       <div className="mx-auto px-4 pb-10 overflow-hidden">
         <nav className="flex flex-col gap-8 md:gap-0 md:flex-row md:justify-evenly items-center" aria-label="Footer">
-          <div>
+          {/* <div>
             Logo
-          </div>
+          </div> */}
           <div className='text-center md:text-left'>
             <h2 className='text-3xl md:text-5xl font-satoshi text-sand font-light uppercase'>
               Let's Connect
             </h2>
-            <p className='text-xl md:text-[40px] font-satoshi font-normal text-white/65 mt-3'>Email</p>
+            <p className='text-xl md:text-[40px] font-satoshi font-normal text-white/65 mt-3'>contact@codeinpixels.com</p>
           </div>
           <div>
             {navigation.main.map((item) => (
