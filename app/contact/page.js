@@ -2,7 +2,9 @@
 
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import emailjs from "@emailjs/browser";
-import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
+import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
+import email from "../../public/assets/Email.svg"
+import Image from 'next/image';
 
 const contact = () => {
   const [userDetails, setUserDetails] = useState({
@@ -11,7 +13,7 @@ const contact = () => {
     message: "",
   });
   const [selectedButtons, setSelectedButtons] = useState([]);
-  const [waitlistModal, setWaitlistModal] = useState(true);
+  const [waitlistModal, setWaitlistModal] = useState(false);
 
 
   const [active, setActive] = useState(false);
@@ -146,11 +148,11 @@ const contact = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                {/* <Image
+                <Image
                   src={email}
                   alt="icon"
                   className="h-[76px] w-[76px] rounded-full"
-                /> */}
+                />
               </a>
             </div>
 
