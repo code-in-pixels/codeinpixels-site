@@ -44,7 +44,7 @@ const SelectedWork = () => {
       <h2 className='text-sand text-[40px] font-light font-satoshi tracking-[1px]'>Selected <span className='font-gambetta italic'>Work</span></h2>
       <div className='grid md:grid-cols-[repeat(auto-fit,minmax(500px,1fr))] items-center gap-8  py-4'>
         {works.map((project) => (
-          <Link href={project.projLink} className={`border border-white/15 p-12 rounded-[2px] shadow-[0_4px_4px_0_#00000040] h-[513px] cursor-pointer`} key={project?.id}
+          <Link href={project.projLink} className={`border border-white/15 p-12 rounded-[2px] shadow-[0_4px_4px_0_#00000040] h-[513px] cursor-pointer hover:shadow-[0_4px_4px_4px] hover:shadow-white/5 transition duration-150 ease-in-out`} key={project?.id}
             style={{
               backgroundImage: `url(${project.bg.src})`,
               backgroundSize: 'cover',

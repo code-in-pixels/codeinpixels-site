@@ -52,11 +52,11 @@ const messageBtn = () => {
         <ul className={`md:flex hidden items-center justify-around`}>
           {navLinks.map((links) => (
             <li key={links?.id} className=''>
-              <Link href={links?.link} className='text-[13px] tracking-[1.5px] font-normal text-white font-satoshi uppercase'>{links?.name}</Link>
+              <Link href={links?.link} className={`text-[13px] tracking-[1.5px] font-normal text-white font-satoshi uppercase focus:border-b hover:text-sand transition duration-150 ease-in-out`}>{links?.name}</Link>
             </li>
           ))}
           <li>
-            <button className='uppercase px-4 py-2.5 bg-[#a2d2ff] text-black rounded-[2px] tracking-[1.5px] text-[13px] font-normal cursor-pointer font-satoshi' onClick={messageBtn}>
+            <button className='uppercase px-4 py-2.5 bg-[#a2d2ff] text-black rounded-[2px] tracking-[1.5px] text-[13px] font-normal cursor-pointer font-satoshi hover:bg-[#a2d2ff]/90 transition duration-150 ease-in-out' onClick={messageBtn}>
               Book a session
             </button>
           </li>
@@ -71,7 +71,7 @@ const messageBtn = () => {
           </div> */}
 
           <div className='flex items-center gap-6'>
-            <button className='uppercase px-4 py-2.5 bg-[#a2d2ff] text-black rounded-[2px] tracking-[1.5px] text-[13px] font-normal cursor-pointer font-satoshi' onClick={messageBtn}>
+            <button className='uppercase px-4 py-2.5 bg-[#a2d2ff] hover:bg-[#a2d2ff]/40  text-black rounded-[2px] tracking-[1.5px] text-[13px] font-normal cursor-pointer font-satoshi transition duration-150 ease-in-out' onClick={messageBtn}>
               Book a session
             </button>
           </div>

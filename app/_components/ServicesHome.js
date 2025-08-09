@@ -4,8 +4,8 @@ const services = [
   {
     id: 1,
     num: "01",
-    serviceName: "Web Design",
-    serviceText: "Visually stunning web designs that captivate your audience by blending your brand voice and customer needs."
+    serviceName: "Design",
+    serviceText: "Visually stunning designs that captivates your audience and converts. Whether you're launching a startup or building your brand."
   },
   {
     id: 2,

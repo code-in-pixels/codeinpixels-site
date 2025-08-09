@@ -129,7 +129,7 @@ const contact = () => {
         </div>
 
         <button
-          className={`w-full rounded-[2px] px-4 py-2.5 border ${active ? "opacity-100" : "opacity-40"} text-[13px] tracking-[1.5px] bg-black/50 text-[#fff] font-normal font-satoshi uppercase cursor-pointer`}
+          className={`w-full rounded-[2px] px-4 py-2.5 border ${active ? "opacity-100" : "opacity-40"} text-[13px] tracking-[1.5px] bg-black/50 text-[#fff] font-normal font-satoshi uppercase cursor-pointer transition duration-150 ease-in-out focus:outline-none hover:bg-black/95`}
           disabled={!active}
           onClick={handleSubmit}
           ref={formRef}
@@ -141,8 +141,8 @@ const contact = () => {
 
       <div className="lg:block hidden lg:w-[380px]">
         <div className="w-full flex flex-col justify-center">
-          <div className="border border-white/15 bg-white/5 p-6  rounded-[20px] flex items-center rounded-20 gap-4 cursor-pointer">
-            <div className="rounded-full h-[76px] w-[76px] flex items-center justify-center ml-3 group-hover:translate-x-10 transition-all duration-[750ms] ease-in-out">
+          <div className="border border-white/15 bg-white/5 p-6  rounded-[20px] flex items-center rounded-20 gap-4 cursor-pointer hover:shadow-sm hover:shadow-white/10 transition duration-150 ease-in-out">
+            <div className="rounded-full h-[76px] w-[76px] flex items-center justify-center ml-3">
               <a
                 href="mailto:contact@codeinpixels.com"
                 target="_blank"
@@ -156,7 +156,7 @@ const contact = () => {
               </a>
             </div>
 
-            <div className="gap-4 group-hover:translate-x-10 transition-all duration-[750ms] ease-in-out">
+            <div className="gap-4">
               <h3 className="font-bold text-[26px] leading-[32px] tracking-[0.5px] font-satoshi">
                 <a
                   href="mailto:contact@codeinpixels.com"
