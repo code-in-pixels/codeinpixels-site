@@ -1,7 +1,6 @@
 "use client"
 
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 // import Logo from "../../public/assets/logo-bg.png"
 // import Image from 'next/image'
@@ -31,15 +30,42 @@ const navLinks = [
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const router = useRouter();
 
   const toggleMobileMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+ const [scriptLoaded, setScriptLoaded] = useState(false);
+
   const messageBtn = () => {
-    router.push("/contact");
-  }
+    if (!scriptLoaded) {
+      const link = document.createElement("link");
+      link.href =
+        "https://calendar.google.com/calendar/scheduling-button-script.css";
+      link.rel = "stylesheet";
+      document.head.appendChild(link);
+
+      const script = document.createElement("script");
+      script.src =
+        "https://calendar.google.com/calendar/scheduling-button-script.js";
+      script.async = true;
+      script.onload = () => {
+        if (window.calendar && window.calendar.schedulingButton) {
+          window.calendar.schedulingButton.load({
+            url: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2Vs1TDlRLwRwLEPREF-ThDoXDQeTPy2hnwwkv_s5uq7mxqsDU04Q1JKBFPer-cBUfl0RZcHb2-?gv=true",
+            color: "#039BE5",
+            label: "Book an appointment",
+            target: document.getElementById("calendar-button-container"),
+          });
+        }
+      };
+      document.body.appendChild(script);
+      setScriptLoaded(true);
+    }
+  };
+
+
+
 
   return (
     <header className='max-w-[594px] w-[inherit] mx-auto mt-12 block fixed inset-0 z-50 pointer-events-none'>
@@ -56,7 +82,7 @@ const Header = () => {
             </button>
           </li>
         </ul>
-
+<div id="calendar-button-container" />
         <div className='flex justify-between items-center md:hidden'>
           {/* <div>
             <Image
@@ -67,7 +93,7 @@ const Header = () => {
 
           <div className='flex items-center gap-6'>
             <button className='uppercase px-4 py-2.5 bg-[#a2d2ff] text-black rounded-[2px] tracking-[1.5px] text-[13px] font-normal cursor-pointer font-satoshi' onClick={messageBtn}>
-              Let's Talk
+              Book a session
             </button>
           </div>
 
@@ -75,16 +101,16 @@ const Header = () => {
 
             <button className='block md:hidden ' aria-labelledby='Menu Toggle Button' onClick={toggleMobileMenu}>
 
-                {isMenuOpen
-                  ?
-                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 50 50" className='fill-current text-white'>
-                    <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"></path>
-                  </svg>
-                  :
-                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 50 50" className='fill-current text-white'>
-                    <path d="M 5 9 L 5 11 L 45 11 L 45 9 L 5 9 z M 5 24 L 5 26 L 45 26 L 45 24 L 5 24 z M 5 39 L 5 41 L 45 41 L 45 39 L 5 39 z"></path>
-                  </svg>
-                }
+              {isMenuOpen
+                ?
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 50 50" className='fill-current text-white'>
+                  <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"></path>
+                </svg>
+                :
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 50 50" className='fill-current text-white'>
+                  <path d="M 5 9 L 5 11 L 45 11 L 45 9 L 5 9 z M 5 24 L 5 26 L 45 26 L 45 24 L 5 24 z M 5 39 L 5 41 L 45 41 L 45 39 L 5 39 z"></path>
+                </svg>
+              }
 
 
             </button>
