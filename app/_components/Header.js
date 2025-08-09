@@ -37,33 +37,12 @@ const Header = () => {
 
  const [scriptLoaded, setScriptLoaded] = useState(false);
 
-  const messageBtn = () => {
-    if (!scriptLoaded) {
-      const link = document.createElement("link");
-      link.href =
-        "https://calendar.google.com/calendar/scheduling-button-script.css";
-      link.rel = "stylesheet";
-      document.head.appendChild(link);
+const messageBtn = () => {
+  const calendarUrl =
+    "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2Vs1TDlRLwRwLEPREF-ThDoXDQeTPy2hnwwkv_s5uq7mxqsDU04Q1JKBFPer-cBUfl0RZcHb2-?gv=true";
 
-      const script = document.createElement("script");
-      script.src =
-        "https://calendar.google.com/calendar/scheduling-button-script.js";
-      script.async = true;
-      script.onload = () => {
-        if (window.calendar && window.calendar.schedulingButton) {
-          window.calendar.schedulingButton.load({
-            url: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2Vs1TDlRLwRwLEPREF-ThDoXDQeTPy2hnwwkv_s5uq7mxqsDU04Q1JKBFPer-cBUfl0RZcHb2-?gv=true",
-            color: "#039BE5",
-            label: "Book an appointment",
-            target: document.getElementById("calendar-button-container"),
-          });
-        }
-      };
-      document.body.appendChild(script);
-      setScriptLoaded(true);
-    }
-  };
-
+  window.open(calendarUrl, "calendarWindow", "width=800,height=700");
+};
 
 
 

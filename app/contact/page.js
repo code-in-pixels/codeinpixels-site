@@ -1,7 +1,8 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import emailjs from "@emailjs/browser";
+import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
 
 const contact = () => {
   const [userDetails, setUserDetails] = useState({
@@ -10,9 +11,9 @@ const contact = () => {
     message: "",
   });
   const [selectedButtons, setSelectedButtons] = useState([]);
-  const [waitlistModal, setWaitlistModal] = useState(false);
+  const [waitlistModal, setWaitlistModal] = useState(true);
 
-  
+
   const [active, setActive] = useState(false);
   const [loading, setLoading] = useState(false);
   const formRef = useRef(null);
@@ -131,7 +132,7 @@ const contact = () => {
           onClick={handleSubmit}
           ref={formRef}
         >
-            {loading ? "Sending..." : "Send Message"}
+          {loading ? "Sending..." : "Send Message"}
 
         </button>
       </form>
@@ -180,65 +181,32 @@ const contact = () => {
         </div>
       </div>
 
-            {waitlistModal && (
-        <Transition.Root show={waitlistModal} as={Fragment}>
-          <Dialog as="div" className="fixed z-30 inset-0 overflow-y-scroll" onClose={setWaitlistModal}>
-            <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
+      {waitlistModal && (
+        <Dialog open={waitlistModal} as="div" className="relative z-10 focus:outline-none" onClose={() => setWaitlistModal(false)}>
+          <div className="fixed inset-0 z-10 w-screen overflow-y-auto bg-black/90 backdrop-opacity-10">
+            <div className="flex min-h-full items-center justify-center p-4 ">
+              <DialogPanel
+                transition
+                className="w-full max-w-md rounded-xl bg-white/5 p-6 backdrop-blur-2xl duration-300 ease-out data-closed:transform-[scale(95%)] data-closed:opacity-0"
               >
-                <Dialog.Overlay className="absolute inset-0 bg-[#000] bg-opacity-10 transition-opacity backdrop-blur" />
-              </Transition.Child>
-
-              {/* This element is to trick the browser into centering the modal contents. */}
-              <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
-                &#8203;
-              </span>
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                enterTo="opacity-100 translate-y-0 sm:scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              >
-                <div className="relative inline-block align-bottom bg-[#111927] rounded-[30px] px-4 lg:px-12 pt-5 pb-4 text-left overflow-hidden shadow-[0_-17px_20px_0_rgba(0,_0,_0,_0.08)] transform transition-all sm:my-8 sm:align-middle sm:max-w-[512px] sm:w-full sm:p-6">
-                  <div>
-                    <div className="mx-auto flex items-center justify-center ">
-                      <Image src={CheckMark} alt="" aria-hidden="true" />
-                    </div>
-                    <div className="mt-3 text-center sm:mt-5">
-                      <Dialog.Title as="h3" className="text-lg leading-6 font-bold font-poppins text-white">
-                        Waitlist Confirmed
-                      </Dialog.Title>
-                      <div className="mt-2">
-                        <p className="text-sm font-normal font-poppins text-[#CFCFCF]">
-                          You&apos;ve successfully joined the waitlist
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-12 mb-6">
-                    <button
-                      type="button"
-                      className="inline-flex justify-center w-full border border-white outline-none font-euclid rounded-[10px] px-4 py-3 bg-autoPrimary text-base font-semibold text-white sm:text-sm"
-                      onClick={() => setWaitlistModal(false)}
-                    >
-                      Close
-                    </button>
-                  </div>
+                <DialogTitle as="h3" className="text-lg font-medium text-white text-center font-satoshi tracking-[1px]">
+                  Message successful
+                </DialogTitle>
+                <p className="mt-2 text-base text-white/50 font-satoshi">
+                  Your message has been sent successfully. We would get back to you soon.
+                </p>
+                <div className="mt-4">
+                  <button
+                    className="inline-flex items-center gap-2 rounded-md bg-sand/15 tracking-[1px] px-3 py-1.5 text-sm/6 font-chillax font-semibold text-white shadow-inner shadow-white/10 cursor-pointer focus:outline-none "
+                    onClick={() => setWaitlistModal(false)}
+                  >
+                    Close
+                  </button>
                 </div>
-              </Transition.Child>
+              </DialogPanel>
             </div>
-          </Dialog>
-        </Transition.Root>
+          </div>
+        </Dialog>
 
       )}
     </main>
